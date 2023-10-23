@@ -7,16 +7,18 @@ let operator = "";
 let secondNum = ""; 
 let accumulatedValue = "";
 
+//displays numbers and answer on screen
 buttons.forEach(button => {
     button.addEventListener("click", () => {
         const value = button.value;
         if(isNumeric(value)){
             if(operator === ""){
-                firstNum += value;
+                firstNum = value; //resets 
+                accumulatedValue = value;
             }else{
-                secondNum += value;
+                secondNum = value;
+                accumulatedValue = value;
             }  
-            accumulatedValue += value;
         }else if(value === "="){
             if(firstNum !== "" && operator !== "" && secondNum !== ""){
                 const answer = operate(operator, parseFloat(firstNum), parseFloat(secondNum));
