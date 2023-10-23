@@ -1,35 +1,48 @@
+// this 
+
 const display = document.getElementById("display");
 const buttons = document.querySelectorAll(".button");
-
 
 let firstNum = "";
 let operator = "";
 let secondNum = ""; 
 let accumulatedValue = "";
+let isResult = false; //checks state to see if too clear screen
 
 //displays numbers and answer on screen
 buttons.forEach(button => {
     button.addEventListener("click", () => {
         const value = button.value;
+        
         if(isNumeric(value)){
+
             if(operator === ""){
-                firstNum = value; //resets 
-                accumulatedValue = value;
+                if(isResult){ //clears screen
+                    firstNum = "";
+                    isResult = false;
+                }
+                firstNum += value; 
+                accumulatedValue = firstNum;
             }else{
-                secondNum = value;
-                accumulatedValue = value;
+                secondNum += value;
+                accumulatedValue = secondNum;
             }  
         }else if(value === "="){
+            isResult = true;
             if(firstNum !== "" && operator !== "" && secondNum !== ""){
                 const answer = operate(operator, parseFloat(firstNum), parseFloat(secondNum));
                 accumulatedValue = answer;
-                firstNum = answer;
+                if(!isNumeric(value)){
+                    firstNum = answer;
+                }else{
+                    firstNum = "";
+                }
                 operator = "";
                 secondNum = "";
             }
         }else{
             operator = value;
-            accumulatedValue += value;
+            accumulatedValue = operator;
         }
         updateDisplay(accumulatedValue);    
     });
