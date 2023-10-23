@@ -31,17 +31,16 @@ buttons.forEach(button => {
             operator = value;
             accumulatedValue += value;
         }
-        updateDisplay(accumulatedValue);
-       
-        
+        updateDisplay(accumulatedValue);    
     });
 });
 
+//updates screen if value is a number only
 function updateDisplay(value){
-    display.innerText = value;
-    console.log(display);
+    if(isNumeric(value) || value === "Not a Number"){
+        display.innerText = value;
+    }
 };
-//    console.log(display);
 
 function isNumeric(value) {
     return !isNaN(parseFloat(value)) && isFinite(value);
@@ -64,16 +63,21 @@ function divide(a, b){
 }
 
 function operate(operator, firstNum, secondNum){
-    if(operator === "+"){
+    if(isNaN(firstNum) || isNaN(secondNum)){
+        return "Not a Number";
+    }else if(operator === "+"){
         return add(firstNum, secondNum);
     }else if(operator === "-"){
         return subtract(firstNum, secondNum);
     }else if(operator === "*"){
         return multiply(firstNum, secondNum);
     }else if(operator === "/"){
-        return divide(firstNum, secondNum);
+        if(secondNum === 0){
+            return "Not a Number";
+        }else{
+            return divide(firstNum, secondNum);
+        }
     }else{
         return "ERROR";
     }
 }
-// console.log(operate('-', 1, 3));
