@@ -2,6 +2,7 @@
 
 const display = document.getElementById("display");
 const buttons = document.querySelectorAll(".button");
+const allClear = document.getElementById("allClear");
 
 let firstNum = "";
 let operator = "";
@@ -14,8 +15,7 @@ buttons.forEach(button => {
     button.addEventListener("click", () => {
         const value = button.value;
         
-        if(isNumeric(value)){
-
+        if(isNumeric(value) || value === "."){
             if(operator === ""){
                 if(isResult){ //clears screen
                     firstNum = "";
@@ -50,8 +50,10 @@ buttons.forEach(button => {
 
 //updates screen if value is a number only
 function updateDisplay(value){
-    if(isNumeric(value) || value === "Not a Number"){
+    if(isNumeric(value) || value === "Not a Number" || value === "."){
         display.innerText = value;
+    }else if(value === "AC"){
+        display.innerText = "";
     }
 };
 
