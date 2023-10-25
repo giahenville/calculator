@@ -87,21 +87,26 @@ function isNumeric(value) {
 };
 
 function add(a, b){
-    return a + b;
-}
+    return (parseFloat(a) + parseFloat(b)).toString();
+};
 
 function subtract(a, b){
-    return a - b;
-}
+    return (parseFloat(a) - parseFloat(b)).toString();
+};
 
 function multiply(a, b){
-    return a * b;
-}
+    return (parseFloat(a) * parseFloat(b)).toString();
+};
 
 function divide(a, b){
-    return a / b;
-}
+    return (parseFloat(a) / parseFloat(b)).toString();
+};
 
+function percent(a){
+    return (parseFloat(a) / 100).toString();
+};
+
+// FIXME: convert this into a switch statement
 function operate(operator, firstNum, secondNum){
     if(isNaN(firstNum) || isNaN(secondNum)){
         return "Not a Number";
