@@ -1,59 +1,84 @@
-// this 
-
 const display = document.getElementById("display");
-const buttons = document.querySelectorAll(".button");
+const numBtns = document.querySelectorAll(".numBtn");
+const operators = document.querySelectorAll(".operator")
+const equals = document.getElementById("equals");
+const percentBtn = document.getElementById("percentBtn");
 const allClear = document.getElementById("allClear");
+
 
 let firstNum = "";
 let operator = "";
 let secondNum = ""; 
 let accumulatedValue = "";
-let isResult = false; //checks state to see if too clear screen
+let isResult = false; //checks state to see if to clear screen
 
 //displays numbers and answer on screen
-buttons.forEach(button => {
-    button.addEventListener("click", () => {
+// TODO: - write new logic -> treat all operators like an equal sign when secondNum is not-empty
+//       - always store operated numbers into firstNum
+
+// tmr 10/25/23: add Period, and posneg functions
+
+
+numBtns.forEach(button => {
+    button.addEventListener("click", () =>{
         const value = button.value;
-        
-        if(isNumeric(value) || value === "."){
-            if(operator === ""){
-                if(isResult){ //clears screen
-                    firstNum = "";
-                    isResult = false;
-                }
-                firstNum += value; 
-                accumulatedValue = firstNum;
-            }else{
-                secondNum += value;
-                accumulatedValue = secondNum;
-            }  
-        }else if(value === "="){
-            isResult = true;
-            if(firstNum !== "" && operator !== "" && secondNum !== ""){
-                const answer = operate(operator, parseFloat(firstNum), parseFloat(secondNum));
-                accumulatedValue = answer;
-                if(!isNumeric(value)){
-                    firstNum = answer;
-                }else{
-                    firstNum = "";
-                }
-                operator = "";
-                secondNum = "";
+        if(operator === ""){
+            //resets firstNum if no operator is pressed after a calculation has been run
+            if (isResult === true) {
+                // wipe the firstNum
+                firstNum = "";
             }
+            firstNum += value;
+            accumulatedValue = firstNum;
         }else{
-            operator = value;
-            accumulatedValue = operator;
+            secondNum += value;
+            accumulatedValue = secondNum;
         }
-        updateDisplay(accumulatedValue);    
+        isResult = false;
+        updateDisplay(accumulatedValue);
     });
 });
 
-//updates screen if value is a number only
+operators.forEach(operatorBtn => {
+    operatorBtn.addEventListener("click", () =>{
+        operator = operatorBtn.value;
+        if(isResult){
+            firstNum = parseFloat(accumulatedValue);
+            secondNum = "";
+        }
+
+    });
+});
+
+equals.addEventListener("click", () => {
+    const result = operate(operator, firstNum, secondNum);
+    isResult = true;
+    updateDisplay(result);
+    firstNum = parseFloat(result);
+    accumulatedValue = parseFloat(result);
+    secondNum = "";
+    operator = "";
+    console.log(result);
+});
+
+percentBtn.addEventListener("click", () => {
+    const answer = percent(firstNum);
+    firstNum = answer;
+    updateDisplay(firstNum);
+});
+
+allClear.addEventListener("click", ()=>{
+    display.innerText = "";
+    firstNum = "";
+    secondNum = "";
+    accumulatedValue = "";
+    isResult = false;
+});
+
 function updateDisplay(value){
     if(isNumeric(value) || value === "Not a Number" || value === "."){
+        //updates screen if value is a number only
         display.innerText = value;
-    }else if(value === "AC"){
-        display.innerText = "";
     }
 };
 
