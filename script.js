@@ -4,6 +4,7 @@ const operators = document.querySelectorAll(".operator")
 const equals = document.getElementById("equals");
 const percentBtn = document.getElementById("percentBtn");
 const allClear = document.getElementById("allClear");
+const posNeg = document.getElementById("posNeg");
 
 
 let firstNum = "";
@@ -11,12 +12,6 @@ let operator = "";
 let secondNum = ""; 
 let accumulatedValue = "";
 let isResult = false; //checks state to see if to clear screen
-
-//displays numbers and answer on screen
-// TODO: - write new logic -> treat all operators like an equal sign when secondNum is not-empty
-//       - always store operated numbers into firstNum
-
-// tmr 10/25/23: add Period, and posneg functions
 
 
 numBtns.forEach(button => {
@@ -72,7 +67,18 @@ allClear.addEventListener("click", ()=>{
     firstNum = "";
     secondNum = "";
     accumulatedValue = "";
+    operator = "";
     isResult = false;
+});
+
+posNeg.addEventListener("click", () => {
+    if (secondNum) {
+        secondNum = (secondNum >= 0) ? -secondNum : Math.abs(secondNum);
+        updateDisplay(secondNum);
+    } else if (firstNum) {
+        firstNum = (firstNum >= 0) ? -firstNum : Math.abs(firstNum);
+        updateDisplay(firstNum);
+    }
 });
 
 function updateDisplay(value){
