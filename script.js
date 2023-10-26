@@ -15,32 +15,49 @@ let isResult = false; //checks state to see if to clear screen
 
 
 numBtns.forEach(button => {
-    button.addEventListener("click", () =>{
+    button.addEventListener("click", () => {
         const value = button.value;
-        if(operator === ""){
-            //resets firstNum if no operator is pressed after a calculation has been run
+        if (operator === "") {
+            // Resets firstNum if no operator is pressed after a calculation has been run
             if (isResult === true) {
-                // wipe the firstNum
+                // Wipe the firstNum
                 firstNum = "";
             }
-            if(firstNum.length <= 9){//limits to 10 numbers long
-                if(firstNum !== "0" && value !== "0"){ //doesn't allow 0 as first digit
+            if (firstNum.length < 9) { // Limits to 9 characters long
+                if (firstNum === "" && value === ".") {
+                    firstNum = "0.";
+                } else if (value === "." && !firstNum.includes(".")) {
                     firstNum += value;
-                    accumulatedValue = firstNum;
+                } else if (firstNum !== "0" || value !== "0") { // Doesn't allow "0" as the first digit
+                    if (firstNum === "0") {
+                        firstNum = value;
+                    } else {
+                        firstNum += value;
+                    }
                 }
+                accumulatedValue = firstNum;
             }
-        }else{
-            if(secondNum.length <= 9){ 
-                if(secondNum !== "0" && value !== "0"){ 
+        } else {
+            if (secondNum.length < 9) {
+                if (secondNum === "" && value === ".") {
+                    secondNum = "0.";
+                } else if (value === "." && !secondNum.includes(".")) {
                     secondNum += value;
-                    accumulatedValue = secondNum;
+                } else if (secondNum !== "0" || value !== "0") {
+                    if (secondNum === "0") {
+                        secondNum = value;
+                    } else {
+                        secondNum += value;
+                    }
                 }
+                accumulatedValue = secondNum;
             }
         }
         isResult = false;
         updateDisplay(accumulatedValue);
     });
 });
+
 
 operators.forEach(operatorBtn => {
     operatorBtn.addEventListener("click", () =>{
