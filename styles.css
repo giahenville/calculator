@@ -1,0 +1,79 @@
+body{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(1, 0, 0);
+    padding: 15px 10px;
+}
+
+#display{
+    font-size: xx-large;
+    padding-top: 15px;
+    color: rgb(255, 255, 255);
+    align-self: flex-end;
+    margin: 3px;
+}
+
+#buttonsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
+}
+
+.zeroContainer{
+    display: flex;
+}
+
+#zero{
+    width: 80px;
+    border-radius: 20px;
+    padding-right: 50%;
+    
+}
+
+#rowFive{
+    display: flex;
+    justify-content: space-between;
+}
+
+button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    font-size: 16px; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    margin: 3px;
+}
+
+.orange{
+    background-color: rgb(237, 152, 55);
+    color: rgb(255, 255, 255);
+    font-size: 15px;;
+}
+
+.lightGrey{
+    background-color: rgb(164, 164, 164);
+    color: rgb(2, 1, 2);
+    font-size: 13px;;
+}
+
+.darkGrey{
+    background-color: rgb(51, 51, 51);
+    color: rgb(246, 246, 246);
+    font-size: 13px;;
+}
