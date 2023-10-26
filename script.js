@@ -36,12 +36,22 @@ numBtns.forEach(button => {
 
 operators.forEach(operatorBtn => {
     operatorBtn.addEventListener("click", () =>{
+        if(firstNum && secondNum){
+            isResult = true;
+            const result = operate(operator, firstNum, secondNum);
+            firstNum = parseFloat(result);
+            accumulatedValue = parseFloat(result);
+            secondNum = "";
+            operator = "";
+
+        }
+        
         operator = operatorBtn.value;
+
         if(isResult){
             firstNum = parseFloat(accumulatedValue);
             secondNum = "";
         }
-
     });
 });
 
