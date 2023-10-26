@@ -72,7 +72,7 @@ percentBtn.addEventListener("click", () => {
 });
 
 allClear.addEventListener("click", ()=>{
-    display.innerText = "";
+    display.innerText = "0";
     firstNum = "";
     secondNum = "";
     accumulatedValue = "";
