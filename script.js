@@ -23,14 +23,18 @@ numBtns.forEach(button => {
                 // wipe the firstNum
                 firstNum = "";
             }
-            if(firstNum.length <= 9){
-                firstNum += value;
-                accumulatedValue = firstNum;
+            if(firstNum.length <= 9){//limits to 10 numbers long
+                if(firstNum !== "0" && value !== "0"){ //doesn't allow 0 as first digit
+                    firstNum += value;
+                    accumulatedValue = firstNum;
+                }
             }
         }else{
-            if(secondNum.length <= 9){
-                secondNum += value;
-                accumulatedValue = secondNum;
+            if(secondNum.length <= 9){ 
+                if(secondNum !== "0" && value !== "0"){ 
+                    secondNum += value;
+                    accumulatedValue = secondNum;
+                }
             }
         }
         isResult = false;
