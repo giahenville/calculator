@@ -63,7 +63,6 @@ equals.addEventListener("click", () => {
     accumulatedValue = parseFloat(result);
     secondNum = "";
     operator = "";
-    console.log(result);
 });
 
 percentBtn.addEventListener("click", () => {
