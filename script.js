@@ -23,11 +23,15 @@ numBtns.forEach(button => {
                 // wipe the firstNum
                 firstNum = "";
             }
-            firstNum += value;
-            accumulatedValue = firstNum;
+            if(firstNum.length <= 9){
+                firstNum += value;
+                accumulatedValue = firstNum;
+            }
         }else{
-            secondNum += value;
-            accumulatedValue = secondNum;
+            if(secondNum.length <= 9){
+                secondNum += value;
+                accumulatedValue = secondNum;
+            }
         }
         isResult = false;
         updateDisplay(accumulatedValue);
