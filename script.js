@@ -122,23 +122,24 @@ function percent(a){
     return (parseFloat(a) / 100).toString();
 };
 
-// FIXME: convert this into a switch statement
-function operate(operator, firstNum, secondNum){
-    if(isNaN(firstNum) || isNaN(secondNum)){
+function operate(operator, firstNum, secondNum) {
+    if (isNaN(firstNum) || isNaN(secondNum)) {
         return "Not a Number";
-    }else if(operator === "+"){
-        return add(firstNum, secondNum);
-    }else if(operator === "-"){
-        return subtract(firstNum, secondNum);
-    }else if(operator === "*"){
-        return multiply(firstNum, secondNum);
-    }else if(operator === "/"){
-        if(secondNum === 0){
-            return "Not a Number";
-        }else{
-            return divide(firstNum, secondNum);
-        }
-    }else{
-        return "ERROR";
+    }
+    switch (operator) {
+        case "+":
+            return add(firstNum, secondNum);
+        case "-":
+            return subtract(firstNum, secondNum);
+        case "*":
+            return multiply(firstNum, secondNum);
+        case "/":
+            if (secondNum === 0) {
+                return "Not a Number";
+            } else {
+                return divide(firstNum, secondNum);
+            }
+        default:
+            return "ERROR";
     }
 }
