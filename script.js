@@ -23,7 +23,7 @@ numBtns.forEach(button => {
                 // Wipe the firstNum
                 firstNum = "";
             }
-            if (firstNum.length < 9) { // Limits to 9 characters long
+            if (firstNum.length < 11) { // Limits to 9 characters long
                 if (firstNum === "" && value === ".") {
                     firstNum = "0.";
                 } else if (value === "." && !firstNum.includes(".")) {
@@ -38,7 +38,7 @@ numBtns.forEach(button => {
                 accumulatedValue = firstNum;
             }
         } else {
-            if (secondNum.length < 9) {
+            if (secondNum.length < 11) {
                 if (secondNum === "" && value === ".") {
                     secondNum = "0.";
                 } else if (value === "." && !secondNum.includes(".")) {
@@ -51,6 +51,7 @@ numBtns.forEach(button => {
                     }
                 }
                 accumulatedValue = secondNum;
+                console.log(secondNum); ////remove laterrrrrr
             }
         }
         isResult = false;
@@ -116,8 +117,8 @@ posNeg.addEventListener("click", () => {
 });
 
 function updateDisplay(value){
-    if(isNumeric(value) || value === "Not a Number" || value === "."){
-        //updates screen if value is a number only
+    if(isNumeric(value) || value === "NaN" || value === "Don't!" || value === "."){
+        //updates screen if value is a number 
         display.innerText = value;
     }
 };
@@ -148,7 +149,7 @@ function percent(a){
 
 function operate(operator, firstNum, secondNum) {
     if (isNaN(firstNum) || isNaN(secondNum)) {
-        return "Not a Number";
+        return "NaN";
     }
     switch (operator) {
         case "+":
@@ -158,8 +159,9 @@ function operate(operator, firstNum, secondNum) {
         case "*":
             return multiply(firstNum, secondNum);
         case "/":
-            if (secondNum === 0) {
-                return "Not a Number";
+            if (secondNum == 0) {
+                console.log("Don't!");
+                return "Don't!";
             } else {
                 return divide(firstNum, secondNum);
             }
