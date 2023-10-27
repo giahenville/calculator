@@ -23,7 +23,12 @@ numBtns.forEach(button => {
                 // Wipe the firstNum
                 firstNum = "";
             }
-            if (firstNum.length < 9) { // Limits to 9 characters long
+
+            if (value === "." && firstNum.includes(".")) {
+                return; // Ignore additional decimal points
+            }
+
+            if (firstNum.length < 10) { // Limits to 10 characters long
                 if (firstNum === "" && value === ".") {
                     firstNum = "0.";
                 } else if (value === "." && !firstNum.includes(".")) {
@@ -38,7 +43,11 @@ numBtns.forEach(button => {
                 accumulatedValue = firstNum;
             }
         } else {
-            if (secondNum.length < 9) {
+            if (value === "." && secondNum.includes(".")) {
+                return; // Ignore additional decimal points
+            }
+
+            if (secondNum.length < 10) {
                 if (secondNum === "" && value === ".") {
                     secondNum = "0.";
                 } else if (value === "." && !secondNum.includes(".")) {
@@ -58,7 +67,6 @@ numBtns.forEach(button => {
     });
 });
 
-
 operators.forEach(operatorBtn => {
     operatorBtn.addEventListener("click", () =>{
         if(firstNum && secondNum){
@@ -68,7 +76,6 @@ operators.forEach(operatorBtn => {
             accumulatedValue = parseFloat(result);
             secondNum = "";
             operator = "";
-
         }
         
         operator = operatorBtn.value;
