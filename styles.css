@@ -20,17 +20,12 @@ body{
     color: rgb(255, 255, 255);
     align-self: flex-end;
     margin: 3px;
-    
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 #buttonsContainer{
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    
 }
 
 .row{

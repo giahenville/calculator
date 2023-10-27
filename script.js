@@ -23,7 +23,7 @@ numBtns.forEach(button => {
                 // Wipe the firstNum
                 firstNum = "";
             }
-            if (firstNum.length < 11) { // Limits to 9 characters long
+            if (firstNum.length < 9) { // Limits to 9 characters long
                 if (firstNum === "" && value === ".") {
                     firstNum = "0.";
                 } else if (value === "." && !firstNum.includes(".")) {
@@ -38,7 +38,7 @@ numBtns.forEach(button => {
                 accumulatedValue = firstNum;
             }
         } else {
-            if (secondNum.length < 11) {
+            if (secondNum.length < 9) {
                 if (secondNum === "" && value === ".") {
                     secondNum = "0.";
                 } else if (value === "." && !secondNum.includes(".")) {
@@ -51,7 +51,6 @@ numBtns.forEach(button => {
                     }
                 }
                 accumulatedValue = secondNum;
-                console.log(secondNum); ////remove laterrrrrr
             }
         }
         isResult = false;
@@ -151,21 +150,33 @@ function operate(operator, firstNum, secondNum) {
     if (isNaN(firstNum) || isNaN(secondNum)) {
         return "NaN";
     }
+    
+    let result;
+    
     switch (operator) {
         case "+":
-            return add(firstNum, secondNum);
+            result = add(firstNum, secondNum);
+            break;
         case "-":
-            return subtract(firstNum, secondNum);
+            result = subtract(firstNum, secondNum);
+            break;
         case "*":
-            return multiply(firstNum, secondNum);
+            result = multiply(firstNum, secondNum);
+            break;
         case "/":
             if (secondNum == 0) {
-                console.log("Don't!");
                 return "Don't!";
             } else {
-                return divide(firstNum, secondNum);
+                result = divide(firstNum, secondNum);
             }
+            break;
         default:
             return "ERROR";
     }
+    //rounds answer to fit screen
+    if (result.toString().length > 9) {
+        result = parseFloat(result).toPrecision(9);
+    }
+    
+    return result.toString();
 }
