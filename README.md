@@ -6,7 +6,7 @@ This is my clone of the iPhone calculator for The Calculator project in The Odin
 
 The user is able to do simple arithmetic calculations such as addition, subtraction, multiplication, and division.
 
-<img src="./calculator.png" alt="calculator image" width="200" height="200">
+<img src="./calculator.png" alt="calculator image" width="350" height="350">
 
 ## Key Features:
 
