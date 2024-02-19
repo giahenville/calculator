@@ -23,3 +23,6 @@ The user is able to do simple arithmetic calculations such as addition, subtract
 * Learned how to refactor code to improve organization and structure.
 * Successfully added event listeners to buttons and established connections between them to create a responsive user interface.
 
+## Improvements:
+
+* Fix overflowing when result is larger than display
