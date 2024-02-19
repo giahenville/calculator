@@ -1,6 +1,6 @@
 # Calculator
 
-This is my clone of the iPhone calculator for The Calculator project in The Odin Project. Try it [here](https://giabui.github.io/calculator/)!
+This is my clone of the iPhone calculator for The Calculator project in The Odin Project. Try it [here](https://giahenville.github.io/calculator/)!
 
 ## Description:
 
